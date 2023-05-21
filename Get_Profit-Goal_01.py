@@ -84,38 +84,53 @@ def choice_checker(question, empty_valid, valid_answer=None, error=None, multich
 
 
 def not_empty(question):
-
     response = ""
 
     while response == "":
         response = input(question)
-
-    else:
         return response
 
 
 def get_profit_goal(question):
-    amount = int(input("how many?"))
-    cost = float(input("how much each"))
 
-    total_cost = amount * cost
-
-    print(total_cost)
+    error = "please enter a valid profit goal\n"
 
     while True:
-        profit_num = input(question)
 
-        if str(profit_num)[-1] == "%":
+        response = not_empty(question)
+
+            # removes the '$' from the response and flags it as a flat not percentage profit
+        if str(response)[0] == "$":
+            profit_type = "$"
+            goal = response[1:]
+
+        elif str(response)[-1] == "%":
             profit_type = "%"
-            profit_goal = profit_num[:-1]
+            goal = response[:-1]
 
         else:
-            profit_type = "$"
+            profit_type = "unknown"
+            goal = response
+        try:
+            goal = float(goal)
+            if goal >= 0:
+                continue
+
+        except ValueError:
+            print(error)
+            continue
+
+        if profit_type == 'unknown' and goal >= 100:
+            dollar_type = choice_checker("Did you mean")
 
         if profit_type == "%":
-            profit_needed = total_cost + (total_cost * (int(profit_goal) / 100))
+            cost_needed =
+            amount_sold =
 
         elif profit_type == "$":
-            profit_needed = total_cost + profit_goal
+            cost_needed = goal + total_cost/ amount
+            amount_sold =
 
         print(profit_needed)
+
+        return profit_needed

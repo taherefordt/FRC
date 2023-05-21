@@ -1,7 +1,7 @@
 yes_no_answer = ["yes", "no"]
 
 
-def choice_checker(question, valid_answer, error, multichoice=None):
+def response_checker(question, valid_answer, error, multichoice=None):
     # Loop to keep the question going till answered properly
 
     if multichoice is not None:
@@ -24,6 +24,6 @@ def choice_checker(question, valid_answer, error, multichoice=None):
         return response
 
 
-answer = choice_checker("ye/no?", yes_no_answer, "answer y/n!", "multichoice")
+answer = response_checker("ye/no?", yes_no_answer, "answer y/n!", "multichoice")
 
 print(f"you said {answer}")
